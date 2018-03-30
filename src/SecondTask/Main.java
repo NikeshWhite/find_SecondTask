@@ -52,7 +52,14 @@ public class Main {
 
                 String fileName = args[args.length - 1];
 
-                finder.findAll(dir, file, fileName);
+
+                //finder.findAll(dir, file, fileName);
+
+                if (!finder.findAll(dir, file, fileName)) {
+                    System.out.println("Файл не найден");
+                } else {
+                    System.out.println("");
+                }
             }
         }
     }
