@@ -11,13 +11,14 @@ public class Main {
 
             if (args.length == 3) {
 
-                File dir = new File("C:\\users\\Nikesh\\IdeaProjects\\find\\");
-                File file = new File(dir, args[args.length - 1]);
+
+                File defaultDir = new File("C:\\users\\Nikesh\\IdeaProjects\\find\\");
+                File file = new File(defaultDir, args[args.length - 1]);
 
                 if (file.exists()) {
                     System.out.println(file.getAbsolutePath());
                 } else {
-                    System.out.println("Файл не найден");
+                    System.out.println("File not found");
                 }
             }
 
@@ -29,7 +30,7 @@ public class Main {
                 if (file.exists()) {
                     System.out.println(file.getAbsolutePath());
                 } else {
-                    System.out.println("Файл не найден");
+                    System.out.println("File not found");
                 }
             }
         }
@@ -38,14 +39,14 @@ public class Main {
 
             if (args.length == 4) {
 
-                File dir = new File("C:\\users\\nikesh\\IdeaProjects\\find\\");
-                File file = new File(dir, args[args.length - 1]);
+                File defaultDir = new File("C:\\users\\nikesh\\IdeaProjects\\find\\");
+                File file = new File(defaultDir, args[args.length - 1]);
                 String fileName = args[args.length - 1];
 
-                findAll(dir, file, fileName);
+                findAll(defaultDir, file, fileName);
 
                 if (listOfWays.isEmpty()) {
-                    System.out.println("Файлы не найдены");
+                    System.out.println("Files bot found");
                 } else {
                     System.out.println(listOfWays);
                 }
@@ -60,7 +61,7 @@ public class Main {
                 findAll(dir, file, fileName);
 
                 if (listOfWays.isEmpty()) {
-                    System.out.println("Файлы не найдены");
+                    System.out.println("Files not found");
                 } else {
                     System.out.println(listOfWays);
                 }
@@ -68,7 +69,11 @@ public class Main {
         }
     }
 
-    public static ArrayList<String> listOfWays = new ArrayList<>();
+    private static ArrayList<String> listOfWays = new ArrayList<>();
+
+    public static ArrayList<String> getListOfWays () {
+        return listOfWays;
+    }
 
     public static void findAll(File dir, File targetFile, String fileName) {
 
