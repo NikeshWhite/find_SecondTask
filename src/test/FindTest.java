@@ -8,13 +8,13 @@ import static SecondTask.Main.findAll;
 import static SecondTask.Main.getListOfWays;
 import static org.junit.Assert.*;
 
-public class findTest {
+public class FindTest {
 
     @Test
     public void testFindD() {
 
-        String[] testArgs = "find -d firstFile.txt".split(" ");
-        String[] testArgs2 = "find -d secondFile.txt".split(" ");
+        String[] testArgs = "find firstFile.txt".split(" ");
+        String[] testArgs2 = "find secondFile.txt".split(" ");
 
         File defaultDir = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\");
 
@@ -45,7 +45,7 @@ public class findTest {
     @Test
     public void testFindRD() {
 
-        String[] testArgs = "find -r -d file.txt".split(" ");
+        String[] testArgs = "find -r file.txt".split(" ");
 
         File defaultDir = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\");
 
