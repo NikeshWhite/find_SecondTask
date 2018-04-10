@@ -1,11 +1,11 @@
 package test;
 
+import SecondTask.Finder;
 import org.junit.Test;
 import java.io.File;
 import java.util.ArrayList;
 
-import static SecondTask.Main.findAll;
-import static SecondTask.Main.getListOfWays;
+import static SecondTask.Finder.findAll;
 import static org.junit.Assert.*;
 
 public class FindTest {
@@ -62,9 +62,9 @@ public class FindTest {
 
         findAll(defaultDir, myFile, myFileName);
 
-        assertEquals(answer, getListOfWays());
+        assertEquals(answer, Finder.getListOfWays());
 
-        getListOfWays().clear();
+        Finder.getListOfWays().clear();
     }
 
     @Test
@@ -87,9 +87,9 @@ public class FindTest {
 
         findAll(myDir1, myFile1, myFileName1);
 
-        assertEquals(answer, getListOfWays());
+        assertEquals(answer, Finder.getListOfWays());
 
-        getListOfWays().clear();
+        Finder.getListOfWays().clear();
     }
 
 }
