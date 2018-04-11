@@ -5,91 +5,60 @@ import org.junit.Test;
 import java.io.File;
 import java.util.ArrayList;
 
-import static SecondTask.Finder.findAll;
 import static org.junit.Assert.*;
 
 public class FindTest {
 
     @Test
-    public void testFindD() {
+    public void testFind() {
 
-        String[] testArgs = "find firstFile.txt".split(" ");
-        String[] testArgs2 = "find secondFile.txt".split(" ");
+        var fileN1 = new Finder("find firstFile.txt");
+        var fileN2 = new Finder("find -d " + System.getProperty("user.dir") + "\\myDirectory file.txt");
+        var fileN3 = new Finder("find -d " + System.getProperty("user.dir") + "\\myDirectory\\firstDirectory myFile.txt");
+        var fileN4 = new Finder("find -d " + System.getProperty("user.dir") + "\\myDirectory\\firstDirectory file.txt");
+        var fileN5 = new Finder("find -r file.txt");
+        var fileN6 = new Finder("find -r deletedFile.txt");
+        var fileN7 = new Finder("find -r -d " + System.getProperty("user.dir") + " file.txt");
+        var fileN8 = new Finder("find -d " + System.getProperty("user.dir") + " -r file.txt");
 
-        File defaultDir = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\");
+        var defaultDirectory = System.getProperty("user.dir");
 
-        File myFile = new File(defaultDir + "\\" + testArgs[testArgs.length - 1]);
-        File myFile2 = new File(defaultDir + "\\" + testArgs2[testArgs2.length - 1]);
+        var fileA1 = new File (defaultDirectory, "firstFile.txt");
+        var fileA4 = new File (defaultDirectory+"\\myDirectory\\firstDirectory", "file.txt");
+        var fileA51 = new File (defaultDirectory+"\\myDirectory\\firstDirectory", "file.txt");
+        var fileA52 = new File (defaultDirectory+"\\myDirectory\\secondDirectory", "file.txt");
+        var fileA71 = new File (defaultDirectory+"\\myDirectory\\firstDirectory", "file.txt");
+        var fileA72 = new File (defaultDirectory+"\\myDirectory\\secondDirectory", "file.txt");
+        var fileA81 = new File (defaultDirectory+"\\myDirectory\\firstDirectory", "file.txt");
+        var fileA82 = new File (defaultDirectory+"\\myDirectory\\secondDirectory", "file.txt");
 
-        assertTrue(myFile.exists());
-        assertFalse(myFile2.exists());
+        var answer1 = new ArrayList<>();
+        answer1.add(fileA1.getAbsolutePath());
+        var answer2 = new ArrayList<>();
+        answer2.add("File not found");
+        var answer3 = new ArrayList<>();
+        answer3.add("File not found");
+        var answer4 = new ArrayList<>();
+        answer4.add(fileA4.getAbsolutePath());
+        var answer5 = new ArrayList<>();
+        answer5.add(fileA51.getAbsolutePath());
+        answer5.add(fileA52.getAbsolutePath());
+        var answer6 = new ArrayList<>();
+        answer6.add("Files not found");
+        var answer7 = new ArrayList<>();
+        answer7.add(fileA71.getAbsolutePath());
+        answer7.add(fileA72.getAbsolutePath());
+        var answer8 = new ArrayList<>();
+        answer8.add(fileA81.getAbsolutePath());
+        answer8.add(fileA82.getAbsolutePath());
+
+        assertEquals(answer1, fileN1.find());
+        assertEquals(answer2, fileN2.find());
+        assertEquals(answer3, fileN3.find());
+        assertEquals(answer4, fileN4.find());
+        assertEquals(answer5, fileN5.find());
+        assertEquals(answer6, fileN6.find());
+        assertEquals(answer7, fileN7.find());
+        assertEquals(answer8, fileN8.find());
     }
-
-    @Test
-    public void testFindDDirectory() {
-
-        String[] testArgs = "find -d C:\\Users\\Nikesh\\IdeaProjects\\find\\.idea\\ misc.xml".split(" ");
-        String[] testArgs2 = "find -d C:\\Users\\Nikesh\\IdeaProjects\\find\\myDirectory\\ file.txt".split(" ");
-
-        File thisDir1 = new File(testArgs[testArgs.length - 2]);
-        File thisDir2 = new File(testArgs2[testArgs2.length - 2]);
-
-        File myFile = new File(thisDir1 + "\\" + testArgs[testArgs.length - 1]);
-        File myFile2 = new File(thisDir2 + "\\" + testArgs2[testArgs2.length - 1]);
-
-        assertTrue(myFile.exists());
-        assertFalse(myFile2.exists());
-    }
-
-
-    @Test
-    public void testFindRD() {
-
-        String[] testArgs = "find -r file.txt".split(" ");
-
-        File defaultDir = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\");
-
-        File myFileTest11 = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\myDirectory\\firstDirectory\\" + testArgs[testArgs.length - 1]);
-        File myFileTest12 = new File("C:\\Users\\Nikesh\\IdeaProjects\\find\\myDirectory\\secondDirectory\\" + testArgs[testArgs.length - 1]);
-
-        File myFile = new File(defaultDir, testArgs[testArgs.length - 1]);
-
-        String myFileName = testArgs[testArgs.length - 1];
-
-        ArrayList<String> answer = new ArrayList<>();
-        answer.add(myFileTest11.getAbsolutePath());
-        answer.add(myFileTest12.getAbsolutePath());
-
-        findAll(defaultDir, myFile, myFileName);
-
-        assertEquals(answer, Finder.getListOfWays());
-
-        Finder.getListOfWays().clear();
-    }
-
-    @Test
-    public void testFindRDDirectory() {
-
-        String[] testArgs = "find -r -d C:\\Users\\nikesh\\IdeaProjects\\find\\myDirectory file.txt".split(" ");
-
-        File myFileTest11 = new File("C:\\Users\\nikesh\\IdeaProjects\\find\\myDirectory\\firstDirectory\\" + testArgs[testArgs.length - 1]);
-        File myFileTest12 = new File("C:\\Users\\nikesh\\IdeaProjects\\find\\myDirectory\\secondDirectory\\" + testArgs[testArgs.length - 1]);
-
-        File myDir1 = new File(testArgs[testArgs.length - 2]);
-
-        File myFile1 = new File(testArgs[testArgs.length - 1]);
-
-        String myFileName1 = testArgs[testArgs.length - 1];
-
-        ArrayList<String> answer = new ArrayList<>();
-        answer.add(myFileTest11.getAbsolutePath());
-        answer.add(myFileTest12.getAbsolutePath());
-
-        findAll(myDir1, myFile1, myFileName1);
-
-        assertEquals(answer, Finder.getListOfWays());
-
-        Finder.getListOfWays().clear();
-    }
-
 }
