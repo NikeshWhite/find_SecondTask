@@ -12,6 +12,7 @@ public class Finder {
     public Finder(String[] args) {
         this.args = args;
     }
+
     public Finder(String line) {
         this.line = line;
     }
@@ -62,7 +63,6 @@ public class Finder {
                 answer = listOfWays;
             }
         }
-
 
         if (args.length == 5) {
 
